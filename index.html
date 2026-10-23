@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAFSK Blood Donation Club | বিএএফ শাহীন কলেজ কুর্মিটোলা ব্লাড ডোনেশন ক্লাব</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Hind Siliguri & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        crimson: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#C62828',
+                            800: '#9f1239',
+                            900: '#881337',
+                        },
+                        navy: {
+                            800: '#1e293b',
+                            900: '#101C32',
+                            950: '#0b1322',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Hind Siliguri', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .bg-pattern {
+            background-image: radial-gradient(#C62828 0.5px, transparent 0.5px), radial-gradient(#101C32 0.5px, #f8fafc 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-opacity: 0.05;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+        }
+        .print-only { display: none; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen relative">
+
+    <!-- Toast / Notification System (No Alert) -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full px-4 pointer-events-none"></div>
+
+    <!-- Top Notice Bar & Hotline -->
+    <div class="bg-navy-900 text-white text-sm py-2 px-4 no-print border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2 text-center md:text-left">
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <span class="bg-crimson-700 text-white text-xs px-2 py-0.5 rounded font-bold uppercase tracking-wider">জরুরি</span>
+                <span>বিএএফ শাহীন কলেজ কুর্মিটোলা ব্লাড ডোনেশন ক্লাবে আপনাকে স্বাগতম।</span>
+            </div>
+            <div class="flex items-center space-x-6 space-x-reverse text-xs md:text-sm font-semibold">
+                <a href="tel:+8801873570267" class="hover:text-crimson-500 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone-volume text-crimson-500 animate-pulse"></i>
+                    <span>হটলাইন: +880 1873-570267</span>
+                </a>
+                <span class="text-slate-600">|</span>
+                <span class="text-slate-300"><i class="fa-solid fa-clock mr-1"></i> ২৪/৭ সেবা উন্মুক্ত</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="bg-white shadow-sm sticky top-0 z-40 no-print border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                
+                <!-- Brand Logo with BAFSK Crest Style -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="showTab('home')">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-navy-900 via-crimson-700 to-crimson-500 p-0.5 shadow-md shadow-crimson-700/20 flex items-center justify-center overflow-hidden">
+                        <div id="brand-logo-container" class="w-full h-full bg-navy-900 rounded-full flex items-center justify-center text-white text-xl">
+                            <i class="fa-solid fa-droplet text-crimson-500"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-xl md:text-2xl font-bold text-navy-900 leading-tight flex items-center gap-2">
+                            <span>BAFSK ব্লাড ডোনেশন ক্লাব</span>
+                        </h1>
+                        <p class="text-xs text-slate-500 font-medium">বিএএফ শাহীন কলেজ কুর্মিটোলা</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav Items -->
+                <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-slate-700 font-medium text-sm">
+                    <button onclick="showTab('home')" class="nav-btn px-3 py-2 rounded-lg hover:text-crimson-700 hover:bg-slate-50 transition" id="nav-home"><i class="fa-solid fa-house mr-1"></i> হোম</button>
+                    <button onclick="showTab('find-donor')" class="nav-btn px-3 py-2 rounded-lg hover:text-crimson-700 hover:bg-slate-50 transition" id="nav-find-donor"><i class="fa-solid fa-magnifying-glass-location mr-1"></i> রক্তদাতা খুঁজুন</button>
+                    <button onclick="showTab('register-donor')" class="nav-btn px-3 py-2 rounded-lg hover:text-crimson-700 hover:bg-slate-50 transition" id="nav-register-donor"><i class="fa-solid fa-user-plus mr-1"></i> রক্তদাতা নিবন্ধন</button>
+                    <button onclick="showTab('committee')" class="nav-btn px-3 py-2 rounded-lg hover:text-crimson-700 hover:bg-slate-50 transition" id="nav-committee"><i class="fa-solid fa-users mr-1"></i> কার্যনির্বাহী কমিটি</button>
+                    <button onclick="showTab('schema')" class="nav-btn px-3 py-2 rounded-lg hover:text-crimson-700 hover:bg-slate-50 transition" id="nav-schema"><i class="fa-solid fa-database mr-1"></i> DB Schema View</button>
+                </nav>
+
+                <!-- Action Button & Admin Login -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <button onclick="openRequestModal()" class="bg-crimson-700 hover:bg-crimson-800 text-white px-4 py-2.5 rounded-lg text-sm font-semibold shadow-md shadow-crimson-700/20 transition flex items-center gap-2">
+                        <i class="fa-solid fa-hand-holding-medical"></i>
+                        <span>জরুরি রক্ত লাগবে</span>
+                    </button>
+                    <button onclick="showTab('admin')" class="border border-navy-900 text-navy-900 hover:bg-navy-900 hover:text-white px-3.5 py-2.5 rounded-lg text-sm font-semibold transition" id="nav-admin" title="অ্যাডমিন প্যানেল">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center gap-2">
+                    <button onclick="openRequestModal()" class="bg-crimson-700 text-white p-2 rounded-lg text-xs font-semibold">
+                        <i class="fa-solid fa-hand-holding-medical text-base"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="p-2 rounded-md text-slate-700 hover:text-crimson-700 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="hidden lg:hidden border-t border-slate-100 bg-white px-4 pt-2 pb-4 space-y-2 text-sm" id="mobile-menu">
+            <button onclick="showTab('home')" class="block w-full text-right px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50">হোম</button>
+            <button onclick="showTab('find-donor')" class="block w-full text-right px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50">রক্তদাতা খুঁজুন</button>
+            <button onclick="showTab('register-donor')" class="block w-full text-right px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50">রক্তদাতা নিবন্ধন</button>
+            <button onclick="showTab('committee')" class="block w-full text-right px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50">কার্যনির্বাহী কমিটি</button>
+            <button onclick="showTab('schema')" class="block w-full text-right px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50">DB Schema View</button>
+            <button onclick="showTab('admin')" class="block w-full text-right px-3 py-2 rounded-md font-medium text-crimson-700 hover:bg-slate-50">অ্যাডমিন পোর্টাল</button>
+        </div>
+    </header>
+
+    <!-- Main Content Dynamic Container -->
+    <main class="flex-grow">
+        
+        <!-- ================= PAGE 1: HOME PAGE ================= -->
+        <section id="page-home" class="page-view space-y-12">
+            
+            <!-- Hero Section -->
+            <div class="relative bg-gradient-to-br from-navy-950 via-navy-900 to-crimson-900 text-white py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-pattern"></div>
+                <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <span class="inline-block bg-crimson-700/40 border border-crimson-500/50 text-crimson-100 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+                            এক ফোটা রক্ত, একটি জীবন
+                        </span>
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+                            জরুরি রক্তের দরকারে <br><span class="text-crimson-500">শাহীনীয়দের</span> মানবিক সেতুবন্ধন
+                        </h1>
+                        <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light">
+                            বিএএফ শাহীন কলেজ কুর্মিটোলার সকল শিক্ষার্থী, শিক্ষক ও শুভাকাঙ্ক্ষীদের জন্য একটি সুরক্ষিত রক্তদান নেটওয়ার্ক।
+                        </p>
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
+                            <button onclick="showTab('find-donor')" class="bg-crimson-700 hover:bg-crimson-800 text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-crimson-700/30 transition flex items-center gap-2">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <span>রক্তদাতা খুঁজুন</span>
+                            </button>
+                            <button onclick="showTab('register-donor')" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 font-semibold px-6 py-3 rounded-xl transition flex items-center gap-2">
+                                <i class="fa-solid fa-user-plus"></i>
+                                <span>রক্তদাতা হোন</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Card -->
+                    <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                        <div class="bg-white/10 backdrop-blur-md border border-white/10 p-5 rounded-2xl text-center">
+                            <p class="text-3xl font-extrabold text-crimson-500" id="stat-donors-count">০</p>
+                            <p class="text-sm text-slate-300 mt-1">অনুমোদিত রক্তদাতা</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md border border-white/10 p-5 rounded-2xl text-center">
+                            <p class="text-3xl font-extrabold text-emerald-400" id="stat-fulfilled-count">০</p>
+                            <p class="text-sm text-slate-300 mt-1">সফল রক্তদান</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md border border-white/10 p-5 rounded-2xl text-center">
+                            <p class="text-3xl font-extrabold text-amber-400" id="stat-active-req-count">০</p>
+                            <p class="text-sm text-slate-300 mt-1">চলতি রক্ত যাচনা</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md border border-white/10 p-5 rounded-2xl text-center">
+                            <p class="text-3xl font-extrabold text-sky-400">২৪/৭</p>
+                            <p class="text-sm text-slate-300 mt-1">জরুরি রেসপন্স</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PUBLIC EMERGENCY REQUESTS FEED (HOMEPAGE) -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-sm">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-100 pb-5 mb-6">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-crimson-600 animate-ping"></span>
+                                <h2 class="text-2xl font-bold text-navy-900">জরুরি রক্তের আবেদনসমূহ (Live Feed)</h2>
+                            </div>
+                            <p class="text-sm text-slate-500 mt-1">নিচের রক্তদান যাচনাসমূহ নির্ধারিত মেয়াদের পর স্বয়ংক্রিয়ভাবে আর্কাইভ বা ডিলিট হয়ে যায়।</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="renderHomepageRequests()" class="px-4 py-2 text-xs md:text-sm font-semibold rounded-lg bg-navy-900 text-white">সকল আবেদন</button>
+                            <button onclick="openRequestModal()" class="px-4 py-2 text-xs md:text-sm font-semibold rounded-lg bg-crimson-700 text-white hover:bg-crimson-800 transition">
+                                <i class="fa-solid fa-plus mr-1"></i> নতুন আবেদন জমা দিন
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Requests Container Grid -->
+                    <div id="homepage-requests-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Dynamic Content via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic President's Message -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gradient-to-r from-slate-900 to-navy-900 rounded-2xl text-white p-6 md:p-10 shadow-lg relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl text-white">
+                        <i class="fa-solid fa-quote-right"></i>
+                    </div>
+                    <div class="relative z-10 flex flex-col md:flex-row items-center gap-6">
+                        <div class="w-28 h-28 md:w-36 md:h-36 rounded-full border-4 border-crimson-700 overflow-hidden flex-shrink-0 bg-slate-800 shadow-xl">
+                            <img id="pres-display-img" src="https://placehold.co/200x200/101C32/ffffff?text=President" alt="President BAFSK" class="w-full h-full object-cover">
+                        </div>
+                        <div class="space-y-3 text-center md:text-left">
+                            <span class="text-crimson-500 font-bold text-sm uppercase tracking-wider">সভাপতি মহোদয়ের বার্তা</span>
+                            <h3 id="pres-display-title" class="text-xl md:text-2xl font-bold">"মানবতার সেবায় শাহীনীয় রক্তের বাঁধন"</h3>
+                            <p id="pres-display-msg" class="text-slate-300 text-sm md:text-base leading-relaxed italic">
+                                বিএএফ শাহীন কলেজ কুর্মিটোলা ব্লাড ডোনেশন ক্লাবের মূল লক্ষ্য রক্ত সংগ্রেহের মাধ্যমে মানবসেবা ও শিক্ষার্থীদের মাঝে মানবিক সামাজিক মূল্যবোধ ছড়িয়ে দেওয়া।
+                            </p>
+                            <div>
+                                <p id="pres-display-name" class="font-semibold text-white">সভাপতি, গভর্নিং বডি</p>
+                                <p id="pres-display-designation" class="text-xs text-slate-400">বিএএফ শাহীন কলেজ কুর্মিটোলা</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Donate Blood Section -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl font-bold text-navy-900">কেন রক্তদান করবেন?</h2>
+                    <p class="text-slate-500 text-sm mt-1">স্বেচ্ছায় রক্তদানের শারীরিক ও মানসিক কিছু বড় সুবিধা</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 text-center space-y-3">
+                        <div class="w-12 h-12 bg-crimson-50 rounded-full text-crimson-700 flex items-center justify-center mx-auto text-xl font-bold">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <h4 class="font-bold text-navy-900">হৃদরোগের ঝুঁকি কমায়</h4>
+                        <p class="text-slate-600 text-sm">নিয়মিত রক্তদানে শরীরে অতিরিক্ত আয়রনের মাত্রা নিয়ন্ত্রণে থাকে, যা হৃদযন্ত্র সুস্থ রাখে।</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 text-center space-y-3">
+                        <div class="w-12 h-12 bg-crimson-50 rounded-full text-crimson-700 flex items-center justify-center mx-auto text-xl font-bold">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </div>
+                        <h4 class="font-bold text-navy-900">নতুন রক্তকণিকা সৃষ্টি</h4>
+                        <p class="text-slate-600 text-sm">রক্তদানের পর অস্থিমজ্জা খুব দ্রুত নতুন লোহিত রক্তকণিকা তৈরি শুরু করে।</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 text-center space-y-3">
+                        <div class="w-12 h-12 bg-crimson-50 rounded-full text-crimson-700 flex items-center justify-center mx-auto text-xl font-bold">
+                            <i class="fa-solid fa-hands-holding-circle"></i>
+                        </div>
+                        <h4 class="font-bold text-navy-900">আত্মিক মানসিক শান্তি</h4>
+                        <p class="text-slate-600 text-sm">একজন মুমূর্ষু রোগীর প্রাণ বাঁচানোর সুযোগ মানুষের মানসিকভাবে আত্মতৃপ্তি এনে দেয়।</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUCCESS STORIES & TESTIMONIALS SECTION -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
+                <div class="bg-slate-100/70 border border-slate-200/80 rounded-3xl p-6 md:p-10 space-y-8">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div>
+                            <span class="text-crimson-700 font-bold text-xs uppercase tracking-wider">উপকারভোগীদের কথা</span>
+                            <h2 class="text-2xl md:text-3xl font-bold text-navy-900 mt-1">সাহায্য পাওয়ার অভিজ্ঞতা ও কৃতজ্ঞতা</h2>
+                            <p class="text-slate-500 text-sm mt-1">এই ক্লাবের মাধ্যমে জরুরি মুহূর্তে রক্তের ব্যবস্থা হয়ে যারা উপকৃত হয়েছেন, তাদের মন্তব্য।</p>
+                        </div>
+                        <button onclick="openTestimonialModal()" class="bg-crimson-700 hover:bg-crimson-800 text-white px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition flex items-center gap-2 shadow-md shadow-crimson-700/20">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>আপনার অভিজ্ঞতা লিখুন</span>
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Testimonials Grid -->
+                    <div id="testimonials-display-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Rendered via JS -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= PAGE 2: FIND DONOR PAGE ================= -->
+        <section id="page-find-donor" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-sm">
+                <div class="border-b border-slate-100 pb-5 mb-6">
+                    <h2 class="text-2xl font-bold text-navy-900"><i class="fa-solid fa-magnifying-glass-location text-crimson-700 mr-2"></i>অনুমোদিত রক্তদাতা ডিরেক্টরি</h2>
+                    <p class="text-sm text-slate-500 mt-1">প্রয়োজনীয় গ্রুপের রক্তদাতা অনুসন্ধান করুন। (শুধুমাত্র অ্যাডমিন অনুমোদিত সক্রিয় ডোনারগণ প্রদর্শিত হচ্ছেন)</p>
+                </div>
+
+                <!-- Search Filters -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 bg-slate-50 p-4 rounded-xl">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">রক্তের গ্রুপ</label>
+                        <select id="search-blood-group" onchange="filterDonors()" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                            <option value="">সকল গ্রুপ</option>
+                            <option value="A+">A+ (এ পজিটিভ)</option>
+                            <option value="A-">A- (এ নেগেটিভ)</option>
+                            <option value="B+">B+ (বি পজিটিভ)</option>
+                            <option value="B-">B- (বি নেগেটিভ)</option>
+                            <option value="O+">O+ (ও পজিটিভ)</option>
+                            <option value="O-">O- (ও নেগেটিভ)</option>
+                            <option value="AB+">AB+ (এবি পজিটিভ)</option>
+                            <option value="AB-">AB- (এবি নেগেটিভ)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">এলাকা/লোকেশন</label>
+                        <input type="text" id="search-location" onkeyup="filterDonors()" placeholder="যেমন: ঢাকা, কুর্মিটোলা..." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">শাহীন ক্যাটাগরি</label>
+                        <select id="search-category" onchange="filterDonors()" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                            <option value="">সকল ক্যাটাগরি</option>
+                            <option value="বর্তমান শিক্ষার্থী">বর্তমান শিক্ষার্থী</option>
+                            <option value="প্রাক্তন শিক্ষার্থী">প্রাক্তন শিক্ষার্থী</option>
+                            <option value="শিক্ষক/কর্মকর্তা">শিক্ষক/কর্মকর্তা</option>
+                            <option value="অভিভাবক/শুভাকাঙ্ক্ষী">অভিভাবক/শুভাকাঙ্ক্ষী</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="resetDonorFilters()" class="w-full bg-slate-200 hover:bg-slate-300 text-slate-700 text-sm font-semibold py-2 rounded-lg transition">
+                            <i class="fa-solid fa-rotate-left mr-1"></i> ফিল্টার রিসেট
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Donors List Directory -->
+                <div id="donors-directory-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic Donors via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 3: REGISTER DONOR PAGE ================= -->
+        <section id="page-register-donor" class="page-view hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 md:p-10 shadow-sm">
+                <div class="text-center max-w-xl mx-auto mb-8">
+                    <span class="w-12 h-12 bg-crimson-50 text-crimson-700 rounded-full inline-flex items-center justify-center text-xl font-bold mb-3">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </span>
+                    <h2 class="text-2xl font-bold text-navy-900">রক্তদাতা নিবন্ধন ফর্ম</h2>
+                    <p class="text-sm text-slate-500 mt-1">আবেদনটি জমা দেওয়ার পর অ্যাডমিন প্যানেল থেকে যাচাইকরণের মাধ্যমে আপনার প্রোফাইলটি ডিরেক্টরিতে প্রকাশিত হবে।</p>
+                </div>
+
+                <form id="donor-registration-form" onsubmit="handleDonorRegistration(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">পূর্ণ নাম <span class="text-crimson-600">*</span></label>
+                            <input type="text" required id="reg-name" placeholder="আপনার নাম লিখুন" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">রক্তের গ্রুপ <span class="text-crimson-600">*</span></label>
+                            <select required id="reg-blood" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                                <option value="">নির্বাচন করুন</option>
+                                <option value="A+">A+ (এ পজিটিভ)</option>
+                                <option value="A-">A- (এ নেগেটিভ)</option>
+                                <option value="B+">B+ (বি পজিটিভ)</option>
+                                <option value="B-">B- (বি নেগেটিভ)</option>
+                                <option value="O+">O+ (ও পজিটিভ)</option>
+                                <option value="O-">O- (ও নেগেটিভ)</option>
+                                <option value="AB+">AB+ (এবি পজিটিভ)</option>
+                                <option value="AB-">AB- (এবি নেগেটিভ)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">মোবাইল নম্বর <span class="text-crimson-600">*</span></label>
+                            <input type="tel" required id="reg-phone" placeholder="017XXXXXXXX" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">বর্তমান বাসস্থান/এলাকা <span class="text-crimson-600">*</span></label>
+                            <input type="text" required id="reg-location" placeholder="যেমন: কুর্মিটোলা, মিরপুর, উত্তরা" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">শাহীন সম্পর্কিত পরিচয় <span class="text-crimson-600">*</span></label>
+                            <select required id="reg-category" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                                <option value="বর্তমান শিক্ষার্থী">বর্তমান শিক্ষার্থী</option>
+                                <option value="প্রাক্তন শিক্ষার্থী">প্রাক্তন শিক্ষার্থী</option>
+                                <option value="শিক্ষক/কর্মকর্তা">শিক্ষক/কর্মকর্তা</option>
+                                <option value="অভিভাবক/শুভাকাঙ্ক্ষী">অভিভাবক/শুভাকাঙ্ক্ষী</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">সর্বশেষ রক্তদানের তারিখ</label>
+                            <input type="date" id="reg-last-donate" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 border border-amber-200 text-amber-800 rounded-xl p-4 text-xs space-y-1">
+                        <p class="font-bold"><i class="fa-solid fa-circle-info mr-1"></i> তথ্য সম্পর্কিত সতর্কতা:</p>
+                        <p>নিবন্ধনের মাধ্যমে আপনি সম্মতি দিচ্ছেন যে, প্রয়োজনে রক্তপ্রার্থীরা এই মোবাইল নম্বরে যোগাযোগ করতে পারবে। তথ্য সম্পূর্ণ সঠিক প্রদান করুন।</p>
+                    </div>
+
+                    <div class="text-center pt-2">
+                        <button type="submit" class="bg-crimson-700 hover:bg-crimson-800 text-white font-semibold px-8 py-3 rounded-xl shadow-md shadow-crimson-700/30 transition">
+                            নিবন্ধন আবেদন জমা দিন
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 4: EXECUTIVE COMMITTEE PAGE ================= -->
+        <section id="page-committee" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+            <div class="text-center max-w-xl mx-auto">
+                <h2 class="text-3xl font-bold text-navy-900">কার্যনির্বাহী কমিটি</h2>
+                <p class="text-slate-500 text-sm mt-1">বিএএফ শাহীন কলেজ কুর্মিটোলা ব্লাড ডোনেশন ক্লাবের পরিচালনা পর্ষদ</p>
+            </div>
+
+            <!-- Dynamic Committee Grid -->
+            <div id="committee-display-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- ================= PAGE 5: DB SCHEMA VIEW ================= -->
+        <section id="page-schema" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
+            <div class="bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-sm space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <h2 class="text-2xl font-bold text-navy-900"><i class="fa-solid fa-database text-crimson-700 mr-2"></i>Database Schema & SQL Script View</h2>
+                    <p class="text-sm text-slate-500 mt-1">Supabase বা PostgreSQL ব্যাকএন্ডে এই ওয়েবসাইটের ডাটাবেজ তৈরি করার জন্য রেডিমেড SQL ব্লুপ্রিন্ট।</p>
+                </div>
+
+                <!-- Explanation Box -->
+                <div class="bg-slate-50 border-l-4 border-crimson-700 p-4 text-sm text-slate-700 space-y-2 rounded-r-lg">
+                    <p class="font-bold text-navy-900">কেন এই SQL স্কিমাটি ব্যবহার করবেন?</p>
+                    <ul class="list-disc list-inside space-y-1 text-xs md:text-sm">
+                        <li><strong>স্বয়ংক্রিয় টেবিল গঠন:</strong> ডোনার নিবন্ধিত তালিকা, রক্তদান যাচনা এবং অডিট লগ করার নিখুঁত টেবিল ফরম্যাট।</li>
+                        <li><strong>নিরাপত্তা রুলস (RLS):</strong> সাধারণ ইউজাররা কেবল Approved রক্তদাতাই দেখতে পারবে, কিন্তু Pending আবেদনের জন্য অ্যাডমিন রুল কার্যকর থাকবে।</li>
+                        <li><strong>কপি ব্যাকএন্ড কোড:</strong> আপনার ক্লাউড ডাটাবেজ কন্সোলে SQL কোড কপি ও রান করে মুহূর্তেই ডাটাবেজ অ্যাক্টিভ করতে পারবেন।</li>
+                    </ul>
+                </div>
+
+                <!-- SQL Code Block -->
+                <div class="relative bg-slate-900 text-slate-100 rounded-xl p-4 text-xs font-mono overflow-x-auto shadow-inner">
+                    <button onclick="copySqlSchema()" class="absolute top-3 right-3 bg-crimson-700 hover:bg-crimson-800 text-white text-xs px-3 py-1.5 rounded transition">
+                        <i class="fa-solid fa-copy mr-1"></i> Copy SQL
+                    </button>
+                    <pre id="sql-code-text">
+-- Create Donors Table with Pending/Approved Flow
+CREATE TABLE donors (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    full_name VARCHAR(100) NOT NULL,
+    blood_group VARCHAR(5) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    location VARCHAR(100) NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    last_donation_date DATE,
+    status VARCHAR(20) DEFAULT 'Pending' CHECK (status IN ('Pending', 'Approved', 'Rejected', 'Inactive')),
+    is_active BOOLEAN DEFAULT true,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now())
+);
+
+-- Create Blood Requests Table
+CREATE TABLE blood_requests (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    patient_name VARCHAR(100) NOT NULL,
+    blood_group VARCHAR(5) NOT NULL,
+    units INTEGER DEFAULT 1,
+    hospital VARCHAR(150) NOT NULL,
+    contact_number VARCHAR(20) NOT NULL,
+    needed_date DATE NOT NULL,
+    status VARCHAR(20) DEFAULT 'Verified' CHECK (status IN ('Pending', 'Verified', 'Fulfilled', 'Cancelled')),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now())
+);
+
+-- Row Level Security Rules
+ALTER TABLE donors ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public Approved Donors View" ON donors FOR SELECT USING (status = 'Approved' AND is_active = true);
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 6: ADMIN PORTAL ================= -->
+        <section id="page-admin" class="page-view hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+            
+            <!-- ADMIN LOGIN SCREEN -->
+            <div id="admin-login-box" class="max-w-md mx-auto bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-md">
+                <div class="text-center mb-6">
+                    <div class="w-12 h-12 bg-navy-900 text-white rounded-full inline-flex items-center justify-center text-xl font-bold mb-2">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900">অ্যাডমিন প্রবেশদ্বার</h3>
+                    <p class="text-xs text-slate-500">ক্লাব কর্মকর্তাদের নিরাপদ পোর্টাল</p>
+                </div>
+
+                <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">ইউজারনেম (Username)</label>
+                        <input type="text" id="admin-user" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-navy-900 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">পাসওয়ার্ড (Password)</label>
+                        <input type="password" id="admin-pass" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-navy-900 outline-none">
+                    </div>
+                    <button type="submit" class="w-full bg-navy-900 hover:bg-navy-950 text-white font-semibold py-2.5 rounded-lg text-sm transition">
+                        লগইন করুন
+                    </button>
+                </form>
+            </div>
+
+            <!-- ADMIN DASHBOARD PANEL (HIDDEN BY DEFAULT) -->
+            <div id="admin-dashboard" class="hidden space-y-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-navy-900 text-white p-6 rounded-2xl shadow-sm">
+                    <div>
+                        <h2 class="text-2xl font-bold flex items-center gap-2">
+                            <span>অ্যাডমিন কন্ট্রোল সেন্টার</span>
+                            <span id="logged-user-badge" class="text-xs bg-crimson-700 text-white px-2.5 py-0.5 rounded-full font-normal"></span>
+                        </h2>
+                        <p class="text-xs text-slate-300 mt-1">রক্তদাতা অনুমোদন, বাণী ও কমিটি পরিবর্তন, রিপোর্ট তৈরি</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="exportCSVReport()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-file-csv"></i> CSV রিপোর্ট
+                        </button>
+                        <button onclick="exportPDFReport()" class="bg-crimson-700 hover:bg-crimson-800 text-white px-3.5 py-2 rounded-lg text-xs font-semibold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-file-pdf"></i> প্রিন্ট/PDF রিপোর্ট
+                        </button>
+                        <button onclick="adminLogout()" class="bg-slate-700 hover:bg-slate-800 text-white px-3 py-2 rounded-lg text-xs font-semibold transition">
+                            <i class="fa-solid fa-right-from-bracket"></i> লগআউট
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Admin Dynamic Tabs Nav -->
+                <div class="border-b border-slate-200 flex flex-wrap gap-4 text-sm font-semibold">
+                    <button onclick="switchAdminTab('donors')" id="adm-tab-btn-donors" class="pb-3 border-b-2 border-crimson-700 text-crimson-700">
+                        নিবন্ধিত রক্তদাতা অডিট (<span id="count-pending-donors">0</span> পেন্ডিং)
+                    </button>
+                    <button onclick="switchAdminTab('requests')" id="adm-tab-btn-requests" class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-navy-900">
+                        রক্তের আবেদনের তালিকা
+                    </button>
+                    <button onclick="switchAdminTab('president')" id="adm-tab-btn-president" class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-navy-900">
+                        <i class="fa-solid fa-pen-to-square mr-1"></i> সভাপতি মহোদয়ের বাণী ও লোগো এডিটর
+                    </button>
+                    <button onclick="switchAdminTab('committee-edit')" id="adm-tab-btn-committee-edit" class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-navy-900">
+                        <i class="fa-solid fa-users-gear mr-1"></i> কমিটি পরিচালনা
+                    </button>
+                    <button onclick="switchAdminTab('testimonials-edit')" id="adm-tab-btn-testimonials-edit" class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-navy-900">
+                        <i class="fa-solid fa-comments mr-1"></i> অভিজ্ঞতা রিভিউ
+                    </button>
+                    <!-- NEW: President Credentials Change Option (Visible ONLY to President Login) -->
+                    <button id="adm-tab-btn-account-settings" onclick="switchAdminTab('account-settings')" class="hidden pb-3 border-b-2 border-transparent text-slate-500 hover:text-navy-900">
+                        <i class="fa-solid fa-key mr-1"></i> ইউজারনেম ও পাসওয়ার্ড পরিবর্তন (প্রেসিডেন্ট)
+                    </button>
+                </div>
+
+                <!-- Admin Content 1: Donors Management -->
+                <div id="admin-tab-donors" class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                        <h3 class="font-bold text-navy-900 text-sm">রক্তদাতাদের তালিকা ও অনুমোদন কেন্দ্র</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs md:text-sm">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-700 font-semibold border-b border-slate-200">
+                                    <th class="p-3">নাম</th>
+                                    <th class="p-3">গ্রুপ</th>
+                                    <th class="p-3">মোবাইল</th>
+                                    <th class="p-3">এলাকা</th>
+                                    <th class="p-3">ক্যাটাগরি</th>
+                                    <th class="p-3">স্ট্যাটাস</th>
+                                    <th class="p-3 text-right">অ্যাকশন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-donors-table-body" class="divide-y divide-slate-100">
+                                <!-- Dynamic Donors via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Admin Content 2: Requests Management -->
+                <div id="admin-tab-requests" class="hidden bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                        <h3 class="font-bold text-navy-900 text-sm">জরুরি রক্তের আবেদন ব্যবস্থাপনা</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs md:text-sm">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-700 font-semibold border-b border-slate-200">
+                                    <th class="p-3">রোগীর নাম</th>
+                                    <th class="p-3">গ্রুপ/ইউনিট</th>
+                                    <th class="p-3">হাসপাতাল</th>
+                                    <th class="p-3">যোগাযোগ</th>
+                                    <th class="p-3">প্রয়োজনের তারিখ</th>
+                                    <th class="p-3">স্ট্যাটাস</th>
+                                    <th class="p-3 text-right">পরিবর্তন করুন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-requests-table-body" class="divide-y divide-slate-100">
+                                <!-- Dynamic Requests via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Admin Content 3: Edit President Message -->
+                <div id="admin-tab-president" class="hidden bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+                    <!-- Custom Logo Settings -->
+                    <div class="border-b pb-6 space-y-4">
+                        <h3 class="font-bold text-navy-900 text-base flex items-center gap-2">
+                            <i class="fa-solid fa-image text-crimson-700"></i>
+                            <span>ওয়েবসাইট লোগো পরিবর্তন</span>
+                        </h3>
+                        <form onsubmit="saveLogo(event)" class="space-y-4 max-w-2xl">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">লোগো ইমেজের URL (Logo Image URL)</label>
+                                <input type="url" id="edit-logo-url" placeholder="https://example.com/logo.png" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-navy-900">
+                                <p class="text-[11px] text-slate-500 mt-1">* ফাঁকা রেখে সেভ করলে ডিফল্ট আইকন লোগো সেট হবে।</p>
+                            </div>
+                            <button type="submit" class="bg-navy-900 hover:bg-navy-950 text-white font-semibold px-5 py-2 rounded-lg text-xs transition">
+                                <i class="fa-solid fa-floppy-disk mr-1"></i> লোগো সেভ করুন
+                            </button>
+                        </form>
+                    </div>
+
+                    <h3 class="font-bold text-navy-900 text-base border-b pb-2">সভাপতি মহোদয়ের বাণী এডিট করুন</h3>
+                    <form onsubmit="savePresidentMessage(event)" class="space-y-4 max-w-2xl">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">শিরোনাম / মূলবাণী (Title)</label>
+                            <input type="text" id="edit-pres-title" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-navy-900">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">বাণী/বার্তা (Message Body)</label>
+                            <textarea id="edit-pres-msg" rows="4" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-navy-900"></textarea>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">সভাপতি/প্রেসিডেন্টের নাম</label>
+                                <input type="text" id="edit-pres-name" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-navy-900">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">পদবী/পরিচয়</label>
+                                <input type="text" id="edit-pres-designation" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-navy-900">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">ছবি URL (Image URL)</label>
+                            <input type="url" id="edit-pres-img" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-navy-900">
+                        </div>
+                        <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-2 rounded-lg text-sm transition">
+                            আপডেট করুন
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Admin Content 4: Edit Executive Committee -->
+                <div id="admin-tab-committee-edit" class="hidden bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+                    <div class="flex justify-between items-center border-b pb-3">
+                        <h3 class="font-bold text-navy-900 text-base">কার্যনির্বাহী কমিটি ব্যবস্থাপনা</h3>
+                        <button onclick="openAddMemberModal()" class="bg-crimson-700 hover:bg-crimson-800 text-white px-3.5 py-2 rounded-lg text-xs font-semibold">
+                            <i class="fa-solid fa-plus mr-1"></i> নতুন সদস্য যোগ করুন
+                        </button>
+                    </div>
+
+                    <div id="admin-committee-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Rendered Committee Cards to Edit -->
+                    </div>
+                </div>
+
+                <!-- Admin Content 5: Manage Testimonials -->
+                <div id="admin-tab-testimonials-edit" class="hidden bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+                    <div class="border-b pb-3">
+                        <h3 class="font-bold text-navy-900 text-base">ইউজারদের অভিজ্ঞতার রিভিউ ব্যবস্থাপনা</h3>
+                        <p class="text-xs text-slate-500 mt-1">ওয়েবসাইটে প্রদর্শিত অভিজ্ঞতা ও মন্তব্যগুলো মুছে ফেলার সুযোগ।</p>
+                    </div>
+
+                    <div id="admin-testimonials-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Rendered Testimonials in Admin -->
+                    </div>
+                </div>
+
+                <!-- Admin Content 6: PRESIDENT ONLY - ACCOUNT CREDENTIALS UPDATE -->
+                <div id="admin-tab-account-settings" class="hidden bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+                    <div class="border-b pb-3">
+                        <h3 class="font-bold text-navy-900 text-base flex items-center gap-2">
+                            <i class="fa-solid fa-user-lock text-crimson-700"></i>
+                            <span>প্রেসিডেন্ট অ্যাক্সেস ক্রেডেনশিয়াল আপডেট</span>
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-1">প্রেসিডেন্ট অ্যাকাউন্টের ইউজারনেম এবং পাসওয়ার্ড পরিবর্তন করার সুবিধা।</p>
+                    </div>
+
+                    <form onsubmit="handlePresidentCredentialsUpdate(event)" class="space-y-4 max-w-md">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">নতুন ইউজারনেম (New Username)</label>
+                            <input type="text" id="new-pres-username" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-navy-900">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">নতুন পাসওয়ার্ড (New Password)</label>
+                            <input type="password" id="new-pres-password" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-navy-900">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">নতুন পাসওয়ার্ড নিশ্চিত করুন (Confirm Password)</label>
+                            <input type="password" id="confirm-pres-password" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-navy-900">
+                        </div>
+                        <button type="submit" class="bg-navy-900 hover:bg-navy-950 text-white font-semibold px-6 py-2.5 rounded-lg text-sm transition">
+                            ক্রেডেনশিয়াল পরিবর্তন করুন
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-navy-950 text-white border-t border-navy-900 mt-16 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-crimson-700 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+                        <h3 class="text-lg font-bold">BAFSK Blood Donation Club</h3>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        বিএএফ শাহীন কলেজ কুর্মিটোলার সকল শিক্ষার্থী ও সদস্যদের মানবিক সেবায় আত্মনিবেদিত একটি স্বেচ্ছাসেবী উদ্যোগ।
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm mb-3 text-crimson-500">জরুরি যোগাযোগ</h4>
+                    <p class="text-xs text-slate-300">হটলাইন: <span class="font-bold text-white">+880 1873-570267</span></p>
+                    <p class="text-xs text-slate-300 mt-1">ঠিকানা: বিএএফ শাহীন কলেজ কুর্মিটোলা, ঢাকা সেবামণ্ডল</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm mb-3 text-crimson-500">দ্রুত লিংক</h4>
+                    <div class="flex flex-col space-y-1.5 text-xs text-slate-300">
+                        <button onclick="showTab('find-donor')" class="text-left hover:text-white">রক্তদাতা অনুসন্ধান</button>
+                        <button onclick="showTab('register-donor')" class="text-left hover:text-white">রক্তদাতা নিবন্ধিত হোন</button>
+                        <button onclick="showTab('committee')" class="text-left hover:text-white">কার্যনির্বাহী কমিটি</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm mb-3 text-crimson-500">ডেভেলপার পরিচিতি</h4>
+                    <div class="space-y-1.5 text-xs text-slate-300">
+                        <p class="font-medium text-white">Created by - Saad Mohammad Obaidullah</p>
+                        <p><i class="fa-brands fa-whatsapp text-emerald-500 mr-1"></i> WP: <a href="https://wa.me/8801717927508" target="_blank" class="hover:underline">01717927508</a></p>
+                        <p><i class="fa-solid fa-phone text-sky-400 mr-1"></i> Number: <a href="tel:01737029524" class="hover:underline">01737029524</a></p>
+                        <p><i class="fa-brands fa-facebook text-blue-500 mr-1"></i> FB: <a href="https://www.facebook.com/profile.php?id=61582773903160" target="_blank" class="hover:underline">Saad Mohammad Obaidullah</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-navy-900 mt-8 pt-4 text-center text-xs text-slate-500">
+                &copy; 2026 BAFSK Blood Donation Club. All Rights Reserved. | Created by Saad Mohammad Obaidullah
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL: Submit Blood Request -->
+    <div id="modal-request" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 no-print">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeRequestModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            
+            <div class="border-b border-slate-100 pb-3">
+                <h3 class="text-xl font-bold text-navy-900">জরুরি রক্তের নতুন আবেদন</h3>
+                <p class="text-xs text-slate-500 mt-0.5">রক্তের চাহিদার সঠিক বিবরণ দিয়ে ফর্মটি পূরণ করুন</p>
+            </div>
+
+            <form onsubmit="handleRequestSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">রোগীর নাম <span class="text-crimson-600">*</span></label>
+                    <input type="text" required id="req-patient" placeholder="রোগীর নাম" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">রক্তের গ্রুপ <span class="text-crimson-600">*</span></label>
+                        <select required id="req-blood" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                            <option value="">নির্বাচন করুন</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">রক্তের পরিমাণ (ব্যাগ)</label>
+                        <input type="number" min="1" value="1" id="req-units" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">হাসপাতালের নাম ও ঠিকানা <span class="text-crimson-600">*</span></label>
+                    <input type="text" required id="req-hospital" placeholder="যেমন: সিএমএইচ, ঢাকা" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">যোগাযোগ নম্বর <span class="text-crimson-600">*</span></label>
+                        <input type="tel" required id="req-phone" placeholder="017XXXXXXXX" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">রক্তদানের শেষ তারিখ <span class="text-crimson-600">*</span></label>
+                        <input type="date" required id="req-date" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                    </div>
+                </div>
+                <div class="text-right pt-2">
+                    <button type="submit" class="bg-crimson-700 hover:bg-crimson-800 text-white font-semibold px-6 py-2.5 rounded-lg text-sm transition">
+                        আবেদন সাবমিট করুন
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Committee Member Add/Edit -->
+    <div id="modal-committee" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 no-print">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closeCommitteeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h3 id="modal-comm-title" class="text-lg font-bold text-navy-900">সদস্য তথ্য যোগ করুন</h3>
+            
+            <form onsubmit="handleSaveCommitteeMember(event)" class="space-y-3">
+                <input type="hidden" id="comm-member-id">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">নাম</label>
+                    <input type="text" id="comm-name" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">পদবী (ক্লাব)</label>
+                    <input type="text" id="comm-role" required placeholder="যেমন: সাধারণ সম্পাদক" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">পরিচয় / ক্যাটাগরি</label>
+                    <input type="text" id="comm-sub" required placeholder="যেমন: দ্বাদশ শ্রেণী (বিজ্ঞান)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">ছবি URL</label>
+                    <input type="url" id="comm-img" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm outline-none">
+                </div>
+                <div class="text-right pt-2">
+                    <button type="submit" class="bg-navy-900 text-white font-semibold px-5 py-2 rounded-lg text-sm transition">
+                        সংরক্ষণ করুন
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Add Testimonial / Experience -->
+    <div id="modal-testimonial" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 no-print">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeTestimonialModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="border-b border-slate-100 pb-3">
+                <h3 class="text-xl font-bold text-navy-900">আপনার অভিজ্ঞতা শেয়ার করুন</h3>
+                <p class="text-xs text-slate-500 mt-0.5">এই ক্লাবের মাধ্যমে সেবা পেয়ে থাকলে আপনার অনুভূতি ও ছবি শেয়ার করুন</p>
+            </div>
+
+            <form onsubmit="handleTestimonialSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">আপনার নাম <span class="text-crimson-600">*</span></label>
+                    <input type="text" required id="testi-name" placeholder="আপনার নাম লিখুন" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">পরিচয় / ভূমিকা</label>
+                        <input type="text" id="testi-role" placeholder="যেমন: অভিভাবক / সাবেক ছাত্র" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">গৃহীত রক্তের গ্রুপ</label>
+                        <select id="testi-blood" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                            <option value="">নির্বাচন করুন</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">আপনার অভিজ্ঞতা / বার্তা <span class="text-crimson-600">*</span></label>
+                    <textarea required id="testi-msg" rows="4" placeholder="কিভাবে আপনি বা আপনার স্বজন উপকৃত হয়েছেন বিস্তারিত লিখুন..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">আপনার ছবি/হাসপাতালের ছবির URL (ঐচ্ছিক)</label>
+                    <input type="url" id="testi-img" placeholder="https://example.com/photo.jpg" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-crimson-700 outline-none">
+                    <p class="text-[11px] text-slate-500 mt-1">* ফাঁকা রাখলে ডিফল্ট প্রোফাইল ছবি দেখানো হবে।</p>
+                </div>
+                <div class="text-right pt-2">
+                    <button type="submit" class="bg-crimson-700 hover:bg-crimson-800 text-white font-semibold px-6 py-2.5 rounded-lg text-sm transition">
+                        অভিজ্ঞতা পোস্ট করুন
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- PRINTABLE REPORT CONTAINER -->
+    <div id="print-report-container" class="print-only p-8 text-black space-y-6">
+        <div class="text-center border-b-2 border-black pb-4">
+            <h1 class="text-2xl font-bold">BAF Shaheen College Kurmitola Blood Donation Club</h1>
+            <p class="text-sm">মাসিক ও অডিট প্রতিবেদন | তারিখ: <span id="print-date"></span></p>
+        </div>
+        <div id="print-content"></div>
+    </div>
+
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
+    <script>
+        // Initial Application Data State
+        let state = {
+            logoUrl: '',
+            presidentAuth: {
+                user: 'president',
+                pass: 'adnan1234'
+            },
+            currentLoggedInUser: null, // 'admin' or 'president'
+            president: {
+                title: '"মানবতার সেবায় শাহীনীয় রক্তের বাঁধন"',
+                msg: 'বিএএফ শাহীন কলেজ কুর্মিটোলা ব্লাড ডোনেশন ক্লাবের মূল লক্ষ্য রক্ত সংগ্রেহের মাধ্যমে মানবসেবা ও শিক্ষার্থীদের মাঝে মানবিক সামাজিক মূল্যবোধ ছড়িয়ে দেওয়া। প্রতিটি রক্তদান জীবন বাঁচায়।',
+                name: 'সভাপতি মহোদয়',
+                designation: 'সভাপতি, গভর্নিং বডি (বিএএফ শাহীন কলেজ কুর্মিটোলা)',
+                img: 'https://placehold.co/200x200/101C32/ffffff?text=President'
+            },
+            committee: [
+                { id: 'c1', name: 'স্কোয়াড্রন লিডার রেহনুমা', role: 'প্রধান উপদেষ্টা', sub: 'বিএএফ শাহীন কলেজ কুর্মিটোলা', img: 'https://placehold.co/150x150/101C32/ffffff?text=Advisor' },
+                { id: 'c2', name: 'সভাপতি মহোদয়', role: 'সভাপতি', sub: 'বিএএফ শাহীন কলেজ কুর্মিটোলা', img: 'https://placehold.co/150x150/101C32/ffffff?text=President' },
+                { id: 'c3', name: 'তানভীর আহমেদ', role: 'সহ-সভাপতি', sub: "এক্স-শাহীন (ব্যাচ '২০)", img: 'https://placehold.co/150x150/101C32/ffffff?text=VP' },
+                { id: 'c4', name: 'সামিউল হাসান', role: 'সাধারণ সম্পাদক', sub: 'দ্বাদশ শ্রেণী (বিজ্ঞান)', img: 'https://placehold.co/150x150/101C32/ffffff?text=GS' }
+            ],
+            donors: [
+                { id: '1', name: 'মোঃ তানজিম আহমেদ', blood: 'A+', phone: '01812345678', location: 'কুর্মিটোলা, ঢাকা', category: 'বর্তমান শিক্ষার্থী', lastDonate: '2025-10-10', status: 'Approved', active: true },
+                { id: '2', name: 'রাকিবুল হাসান', blood: 'O+', phone: '01711223344', location: 'উত্তরা, ঢাকা', category: 'প্রাক্তন শিক্ষার্থী', lastDonate: '2025-08-15', status: 'Approved', active: true },
+                { id: '3', name: 'অধ্যাপক শামীম রেজা', blood: 'B+', phone: '01999887766', location: 'মিরপুর, ঢাকা', category: 'শিক্ষক/কর্মকর্তা', lastDonate: '2025-06-01', status: 'Approved', active: true },
+                { id: '4', name: 'মেহেদী হাসান', blood: 'AB+', phone: '01655443322', location: 'ক্যান্টনমেন্ট', category: 'বর্তমান শিক্ষার্থী', lastDonate: '', status: 'Pending', active: true }
+            ],
+            requests: [
+                { id: 'r1', patient: 'বেগম রাজিয়া খাতুন', blood: 'A+', units: 2, hospital: 'সিএমএইচ (CMH), ঢাকা', phone: '01700112233', neededDate: '2026-12-05', status: 'Verified' },
+                { id: 'r2', patient: 'মাসুদ রানা', blood: 'O-', units: 1, hospital: 'কুর্মিটোলা জেনারেল হাসপাতাল', phone: '01888776655', neededDate: '2026-11-30', status: 'Verified' }
+            ],
+            testimonials: [
+                {
+                    id: 't1',
+                    name: 'মাহমুদুল হাসান',
+                    role: 'অভিভাবক, দ্বাদশ শ্রেণী',
+                    blood: 'O+',
+                    msg: 'আমার স্ত্রীর অস্ত্রোপচারের জন্য জরুরি ২ ব্যাগ O+ রক্তের দরকার ছিল। মধ্যরাতে বিএএফ শাহীন কলেজ ব্লাড ক্লাবের হটলাইনে যোগাযোগ করার ১ ঘণ্টার মধ্যে রক্তদাতা ভাই হাসপাতালে হাজির হন। তাদের এই উপকারের কথা সারাজীবন মনে রাখব।',
+                    img: 'https://placehold.co/150x150/101C32/ffffff?text=User1'
+                },
+                {
+                    id: 't2',
+                    name: 'সাইফুল ইসলাম',
+                    role: 'সাবেক ছাত্র (ব্যাচ ১৮)',
+                    blood: 'AB+',
+                    msg: 'কুর্মিটোলা জেনারেল হাসপাতালে আমার এক আত্মীয়ের জন্য দুর্লভ AB+ রক্তের প্রয়োজন হয়ে পড়েছিল। ডিরেক্টরি থেকে সঙ্গে সঙ্গে নম্বর নিয়ে সরাসরি ডোনারের সাথে কথা বলি এবং রক্ত সংগ্রহ করি। অশেষ ধন্যবাদ ক্লাব পরিচালনা পর্ষদকে!',
+                    img: 'https://placehold.co/150x150/101C32/ffffff?text=User2'
+                }
+            ],
+            isAdminLoggedIn: false
+        };
+
+        // Custom Notification Toast Function
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-emerald-600' : 'bg-crimson-700';
+            toast.className = `${bgColor} text-white px-4 py-3 rounded-xl shadow-lg text-xs font-semibold flex items-center justify-between transition-all duration-300 opacity-0 transform translate-y-2 pointer-events-auto`;
+            toast.innerHTML = `<span>${message}</span> <button onclick="this.parentElement.remove()" class="ml-2 opacity-70 hover:opacity-100">&times;</button>`;
+            
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.remove('opacity-0', 'translate-y-2');
+            }, 10);
+
+            setTimeout(() => {
+                if(toast.parentElement) toast.remove();
+            }, 4000);
+        }
+
+        // Load Persisted Data
+        function loadState() {
+            try {
+                const savedLogo = localStorage.getItem('bafsk_logo');
+                const savedDonors = localStorage.getItem('bafsk_donors');
+                const savedRequests = localStorage.getItem('bafsk_requests');
+                const savedPres = localStorage.getItem('bafsk_president');
+                const savedComm = localStorage.getItem('bafsk_committee');
+                const savedTesti = localStorage.getItem('bafsk_testimonials');
+                const savedPresAuth = localStorage.getItem('bafsk_pres_auth');
+
+                if (savedLogo) state.logoUrl = savedLogo;
+                if (savedDonors) state.donors = JSON.parse(savedDonors);
+                if (savedRequests) state.requests = JSON.parse(savedRequests);
+                if (savedPres) state.president = JSON.parse(savedPres);
+                if (savedComm) state.committee = JSON.parse(savedComm);
+                if (savedTesti) state.testimonials = JSON.parse(savedTesti);
+                if (savedPresAuth) state.presidentAuth = JSON.parse(savedPresAuth);
+            } catch(e) {
+                console.error("Storage error:", e);
+            }
+        }
+
+        function saveState() {
+            localStorage.setItem('bafsk_logo', state.logoUrl);
+            localStorage.setItem('bafsk_donors', JSON.stringify(state.donors));
+            localStorage.setItem('bafsk_requests', JSON.stringify(state.requests));
+            localStorage.setItem('bafsk_president', JSON.stringify(state.president));
+            localStorage.setItem('bafsk_committee', JSON.stringify(state.committee));
+            localStorage.setItem('bafsk_testimonials', JSON.stringify(state.testimonials));
+            localStorage.setItem('bafsk_pres_auth', JSON.stringify(state.presidentAuth));
+            renderAll();
+        }
+
+        // Tab Navigation Logic
+        function showTab(tabId) {
+            document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
+            const targetPage = document.getElementById(`page-${tabId}`);
+            if (targetPage) targetPage.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('text-crimson-700', 'bg-slate-50', 'font-bold'));
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            if (activeBtn) activeBtn.classList.add('text-crimson-700', 'bg-slate-50', 'font-bold');
+
+            document.getElementById('mobile-menu').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Render All Dynamic UI Elements
+        function renderAll() {
+            renderLogo();
+            renderStats();
+            renderHomepageRequests();
+            renderFindDonors();
+            renderPresidentView();
+            renderCommitteeView();
+            renderTestimonials();
+            renderAdminTables();
+        }
+
+        // Render Web Logo
+        function renderLogo() {
+            const container = document.getElementById('brand-logo-container');
+            const logoInput = document.getElementById('edit-logo-url');
+
+            if (logoInput) logoInput.value = state.logoUrl || '';
+
+            if (state.logoUrl) {
+                container.innerHTML = `<img src="${state.logoUrl}" alt="BAFSK Logo" class="w-full h-full object-cover rounded-full" onerror="this.src='https://placehold.co/100x100/101C32/ffffff?text=BAFSK'">`;
+            } else {
+                container.innerHTML = `<i class="fa-solid fa-droplet text-crimson-500"></i>`;
+            }
+        }
+
+        function saveLogo(e) {
+            e.preventDefault();
+            state.logoUrl = document.getElementById('edit-logo-url').value.trim();
+            saveState();
+            showToast('ওয়েবসাইটের লোগো সফলভাবে আপডেট করা হয়েছে!');
+        }
+
+        // Render President Message Section
+        function renderPresidentView() {
+            document.getElementById('pres-display-title').innerText = state.president.title;
+            document.getElementById('pres-display-msg').innerText = state.president.msg;
+            document.getElementById('pres-display-name').innerText = state.president.name;
+            document.getElementById('pres-display-designation').innerText = state.president.designation;
+            document.getElementById('pres-display-img').src = state.president.img;
+
+            // Populate form inputs
+            document.getElementById('edit-pres-title').value = state.president.title;
+            document.getElementById('edit-pres-msg').value = state.president.msg;
+            document.getElementById('edit-pres-name').value = state.president.name;
+            document.getElementById('edit-pres-designation').value = state.president.designation;
+            document.getElementById('edit-pres-img').value = state.president.img;
+        }
+
+        // Render Committee Members
+        function renderCommitteeView() {
+            const grid = document.getElementById('committee-display-grid');
+            grid.innerHTML = state.committee.map(m => `
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm text-center p-6 space-y-3">
+                    <img src="${m.img}" alt="${m.name}" class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-crimson-700 shadow-md" onerror="this.src='https://placehold.co/150x150/101C32/ffffff?text=User'">
+                    <div>
+                        <h4 class="font-bold text-navy-900">${m.name}</h4>
+                        <p class="text-xs text-crimson-700 font-semibold">${m.role}</p>
+                    </div>
+                    <p class="text-xs text-slate-500">${m.sub}</p>
+                </div>
+            `).join('');
+
+            // Admin Committee Editor List
+            const admList = document.getElementById('admin-committee-list');
+            if(admList) {
+                admList.innerHTML = state.committee.map(m => `
+                    <div class="border rounded-xl p-4 flex items-center justify-between bg-slate-50">
+                        <div class="flex items-center gap-3">
+                            <img src="${m.img}" class="w-12 h-12 rounded-full object-cover border">
+                            <div>
+                                <h5 class="font-bold text-sm text-navy-900">${m.name}</h5>
+                                <p class="text-xs text-crimson-700 font-medium">${m.role}</p>
+                                <p class="text-[11px] text-slate-500">${m.sub}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="editMember('${m.id}')" class="text-xs bg-slate-200 hover:bg-slate-300 p-2 rounded-lg text-slate-700"><i class="fa-solid fa-pen"></i></button>
+                            <button onclick="deleteMember('${m.id}')" class="text-xs bg-rose-100 hover:bg-rose-200 p-2 rounded-lg text-rose-700"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Render Testimonials / Success Stories
+        function renderTestimonials() {
+            const grid = document.getElementById('testimonials-display-grid');
+            if(!grid) return;
+
+            if (state.testimonials.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-8 bg-white rounded-2xl border border-slate-200">
+                        <p class="text-slate-500 text-sm">এখনো কোনো অনুভূতির পোস্ট করা হয়নি। আপনার অভিজ্ঞতা প্রথম শেয়ার করুন!</p>
+                    </div>
+                `;
+            } else {
+                grid.innerHTML = state.testimonials.map(t => `
+                    <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <img src="${t.img || 'https://placehold.co/150x150/101C32/ffffff?text=User'}" alt="${t.name}" class="w-12 h-12 rounded-full object-cover border-2 border-crimson-700" onerror="this.src='https://placehold.co/150x150/101C32/ffffff?text=User'">
+                                <div>
+                                    <h4 class="font-bold text-navy-900 text-sm leading-tight">${t.name}</h4>
+                                    <p class="text-[11px] text-slate-500">${t.role || 'উপকারভোগী'}</p>
+                                </div>
+                                ${t.blood ? `<span class="ml-auto bg-crimson-50 text-crimson-700 text-xs font-bold px-2 py-0.5 rounded border border-crimson-200">${t.blood}</span>` : ''}
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed italic">
+                                "${t.msg}"
+                            </p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-100 text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>রক্ত পেয়ে সন্তুষ্ট ও কৃতজ্ঞ</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Admin List
+            const admTestiList = document.getElementById('admin-testimonials-list');
+            if(admTestiList) {
+                admTestiList.innerHTML = state.testimonials.map(t => `
+                    <div class="border rounded-xl p-4 flex items-start justify-between bg-slate-50 gap-3">
+                        <div class="flex items-start gap-3">
+                            <img src="${t.img}" class="w-10 h-10 rounded-full object-cover border">
+                            <div class="space-y-1">
+                                <h5 class="font-bold text-xs text-navy-900">${t.name} (${t.blood || 'N/A'})</h5>
+                                <p class="text-[11px] text-slate-600 italic">"${t.msg}"</p>
+                            </div>
+                        </div>
+                        <button onclick="deleteTestimonial('${t.id}')" class="text-xs bg-rose-100 hover:bg-rose-200 p-1.5 rounded text-rose-700 flex-shrink-0"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Testimonial Modal Handlers
+        function openTestimonialModal() {
+            document.getElementById('modal-testimonial').classList.remove('hidden');
+        }
+
+        function closeTestimonialModal() {
+            document.getElementById('modal-testimonial').classList.add('hidden');
+        }
+
+        function handleTestimonialSubmit(e) {
+            e.preventDefault();
+            const newTesti = {
+                id: 't' + Date.now().toString(),
+                name: document.getElementById('testi-name').value,
+                role: document.getElementById('testi-role').value || 'উপকারভোগী',
+                blood: document.getElementById('testi-blood').value,
+                msg: document.getElementById('testi-msg').value,
+                img: document.getElementById('testi-img').value || 'https://placehold.co/150x150/101C32/ffffff?text=User'
+            };
+
+            state.testimonials.unshift(newTesti);
+            saveState();
+
+            showToast('আপনার মতামত ও অভিজ্ঞতা শেয়ার করার জন্য ধন্যবাদ!');
+            closeTestimonialModal();
+            e.target.reset();
+        }
+
+        function deleteTestimonial(id) {
+            state.testimonials = state.testimonials.filter(t => t.id !== id);
+            saveState();
+            showToast('অভিজ্ঞতার পোস্টটি মুছে ফেলা হয়েছে');
+        }
+
+        // Stats Rendering
+        function renderStats() {
+            const approvedDonors = state.donors.filter(d => d.status === 'Approved' && d.active).length;
+            const fulfilled = state.requests.filter(r => r.status === 'Fulfilled').length;
+            const activeReqs = state.requests.filter(r => r.status === 'Verified').length;
+
+            document.getElementById('stat-donors-count').innerText = approvedDonors;
+            document.getElementById('stat-fulfilled-count').innerText = fulfilled;
+            document.getElementById('stat-active-req-count').innerText = activeReqs;
+        }
+
+        // Homepage Requests Feed
+        function renderHomepageRequests() {
+            const container = document.getElementById('homepage-requests-grid');
+            const activeRequests = state.requests.filter(r => r.status === 'Verified');
+
+            if (activeRequests.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-10 bg-slate-50 rounded-xl">
+                        <i class="fa-solid fa-circle-check text-emerald-500 text-3xl mb-2"></i>
+                        <p class="text-slate-600 font-semibold text-sm">বর্তমানে কোনো জরুরি রক্তের চাহিদা পেন্ডিং নেই।</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = activeRequests.map(r => `
+                <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-3 relative overflow-hidden">
+                    <div class="w-2 h-full bg-crimson-700 absolute left-0 top-0"></div>
+                    <div class="flex justify-between items-start pl-2">
+                        <div>
+                            <span class="bg-crimson-50 text-crimson-700 border border-crimson-200 font-extrabold text-sm px-2.5 py-0.5 rounded-md">
+                                ${r.blood} (${r.units} ব্যাগ)
+                            </span>
+                            <h4 class="font-bold text-navy-900 text-base mt-2">${r.patient}</h4>
+                        </div>
+                        <span class="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium">
+                            তারিখ: ${r.neededDate}
+                        </span>
+                    </div>
+                    <div class="pl-2 text-xs space-y-1 text-slate-600">
+                        <p><i class="fa-solid fa-hospital mr-1 text-slate-400"></i> ${r.hospital}</p>
+                        <p><i class="fa-solid fa-phone mr-1 text-slate-400"></i> ${r.phone}</p>
+                    </div>
+                    <div class="pl-2 pt-1">
+                        <a href="tel:${r.phone}" class="block w-full text-center bg-navy-900 hover:bg-navy-950 text-white font-semibold text-xs py-2 rounded-lg transition">
+                            <i class="fa-solid fa-phone-volume mr-1"></i> যোগাযোগ করুন
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Find Donors Directory
+        function renderFindDonors() {
+            const container = document.getElementById('donors-directory-grid');
+            
+            const bloodGroup = document.getElementById('search-blood-group').value;
+            const location = document.getElementById('search-location').value.toLowerCase();
+            const category = document.getElementById('search-category').value;
+
+            let list = state.donors.filter(d => d.status === 'Approved' && d.active);
+
+            if (bloodGroup) list = list.filter(d => d.blood === bloodGroup);
+            if (location) list = list.filter(d => d.location.toLowerCase().includes(location));
+            if (category) list = list.filter(d => d.category === category);
+
+            if (list.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12 bg-slate-50 rounded-xl">
+                        <i class="fa-solid fa-user-slash text-slate-400 text-3xl mb-2"></i>
+                        <p class="text-slate-600 font-semibold text-sm">কোনো রক্তদাতা পাওয়া যায়নি।</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = list.map(d => `
+                <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-3 relative">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-navy-900 text-base">${d.name}</h4>
+                            <span class="text-xs text-slate-500">${d.category}</span>
+                        </div>
+                        <span class="bg-crimson-700 text-white font-extrabold text-sm px-2.5 py-1 rounded-lg">
+                            ${d.blood}
+                        </span>
+                    </div>
+                    <div class="text-xs space-y-1.5 text-slate-600">
+                        <p><i class="fa-solid fa-location-dot mr-1.5 text-crimson-700"></i> ${d.location}</p>
+                        <p><i class="fa-solid fa-calendar-check mr-1.5 text-emerald-600"></i> সর্বশেষ রক্তদান: ${d.lastDonate || 'তথ্য নেই'}</p>
+                    </div>
+                    <div class="pt-2">
+                        <a href="tel:${d.phone}" class="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-2 rounded-lg transition">
+                            <i class="fa-solid fa-phone mr-1"></i> কল করুন (${d.phone})
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterDonors() { renderFindDonors(); }
+
+        function resetDonorFilters() {
+            document.getElementById('search-blood-group').value = '';
+            document.getElementById('search-location').value = '';
+            document.getElementById('search-category').value = '';
+            renderFindDonors();
+        }
+
+        // Donor Registration Handler
+        function handleDonorRegistration(e) {
+            e.preventDefault();
+            const newDonor = {
+                id: Date.now().toString(),
+                name: document.getElementById('reg-name').value,
+                blood: document.getElementById('reg-blood').value,
+                phone: document.getElementById('reg-phone').value,
+                location: document.getElementById('reg-location').value,
+                category: document.getElementById('reg-category').value,
+                lastDonate: document.getElementById('reg-last-donate').value,
+                status: 'Pending',
+                active: true
+            };
+
+            state.donors.push(newDonor);
+            saveState();
+
+            showToast('ধন্যবাদ! আপনার নিবন্ধনের আবেদনটি জমা হয়েছে। যাচাই শেষে এটি প্রকাশিত হবে।');
+            document.getElementById('donor-registration-form').reset();
+            showTab('home');
+        }
+
+        // Modal Handlers
+        function openRequestModal() {
+            document.getElementById('modal-request').classList.remove('hidden');
+        }
+
+        function closeRequestModal() {
+            document.getElementById('modal-request').classList.add('hidden');
+        }
+
+        function handleRequestSubmit(e) {
+            e.preventDefault();
+            const newReq = {
+                id: 'r' + Date.now().toString(),
+                patient: document.getElementById('req-patient').value,
+                blood: document.getElementById('req-blood').value,
+                units: document.getElementById('req-units').value,
+                hospital: document.getElementById('req-hospital').value,
+                phone: document.getElementById('req-phone').value,
+                neededDate: document.getElementById('req-date').value,
+                status: 'Verified'
+            };
+
+            state.requests.unshift(newReq);
+            saveState();
+
+            showToast('জরুরি রক্তের আবেদনটি সফলভাবে প্রকাশিত হয়েছে।');
+            closeRequestModal();
+            showTab('home');
+        }
+
+        // Admin Auth Flow (Main Admin OR President Login)
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('admin-user').value.trim();
+            const pass = document.getElementById('admin-pass').value.trim();
+
+            if (user === 'admin' && pass === 'bafsk123') {
+                state.isAdminLoggedIn = true;
+                state.currentLoggedInUser = 'admin';
+                setupDashboardView('অ্যাডমিন');
+            } else if (user === state.presidentAuth.user && pass === state.presidentAuth.pass) {
+                state.isAdminLoggedIn = true;
+                state.currentLoggedInUser = 'president';
+                setupDashboardView('প্রেসিডেন্ট');
+            } else {
+                showToast('ভুল ইউজারনেম অথবা পাসওয়ার্ড!', 'error');
+            }
+        }
+
+        function setupDashboardView(roleName) {
+            document.getElementById('admin-login-box').classList.add('hidden');
+            document.getElementById('admin-dashboard').classList.remove('hidden');
+            document.getElementById('logged-user-badge').innerText = roleName;
+
+            const accountTabBtn = document.getElementById('adm-tab-btn-account-settings');
+            if (state.currentLoggedInUser === 'president') {
+                accountTabBtn.classList.remove('hidden');
+                document.getElementById('new-pres-username').value = state.presidentAuth.user;
+            } else {
+                accountTabBtn.classList.add('hidden');
+            }
+
+            renderAdminTables();
+            showToast(`${roleName} হিসেবে সফলভাবে লগইন করেছেন!`);
+        }
+
+        function handlePresidentCredentialsUpdate(e) {
+            e.preventDefault();
+            if (state.currentLoggedInUser !== 'president') {
+                showToast('কেবলমাত্র প্রেসিডেন্ট ইউজারনেম ও পাসওয়ার্ড পরিবর্তন করতে পারবেন!', 'error');
+                return;
+            }
+
+            const newUsername = document.getElementById('new-pres-username').value.trim();
+            const newPass = document.getElementById('new-pres-password').value.trim();
+            const confirmPass = document.getElementById('confirm-pres-password').value.trim();
+
+            if (!newUsername || !newPass) {
+                showToast('ইউজারনেম ও পাসওয়ার্ড ফাঁকা রাখা যাবে না!', 'error');
+                return;
+            }
+
+            if (newPass !== confirmPass) {
+                showToast('দুই পাসওয়ার্ড মিলছে না!', 'error');
+                return;
+            }
+
+            state.presidentAuth.user = newUsername;
+            state.presidentAuth.pass = newPass;
+            saveState();
+
+            showToast('প্রেসিডেন্ট ইউজারনেম ও পাসওয়ার্ড সফলভাবে আপডেট হয়েছে!');
+            document.getElementById('new-pres-password').value = '';
+            document.getElementById('confirm-pres-password').value = '';
+        }
+
+        function adminLogout() {
+            state.isAdminLoggedIn = false;
+            state.currentLoggedInUser = null;
+            document.getElementById('admin-login-box').classList.remove('hidden');
+            document.getElementById('admin-dashboard').classList.add('hidden');
+            document.getElementById('admin-user').value = '';
+            document.getElementById('admin-pass').value = '';
+            showToast('লগআউট করা হয়েছে');
+        }
+
+        // Admin Tab Switch
+        function switchAdminTab(tab) {
+            const tabs = ['donors', 'requests', 'president', 'committee-edit', 'testimonials-edit', 'account-settings'];
+            tabs.forEach(t => {
+                const el = document.getElementById(`admin-tab-${t}`);
+                const btn = document.getElementById(`adm-tab-btn-${t}`);
+                if (el) el.classList.add('hidden');
+                if (btn) btn.className = "pb-3 border-b-2 border-transparent text-slate-500 hover:text-navy-900";
+            });
+
+            const activeEl = document.getElementById(`admin-tab-${tab}`);
+            const activeBtn = document.getElementById(`adm-tab-btn-${tab}`);
+            if (activeEl) activeEl.classList.remove('hidden');
+            if (activeBtn) activeBtn.className = "pb-3 border-b-2 border-crimson-700 text-crimson-700";
+        }
+
+        // Admin Edit President
+        function savePresidentMessage(e) {
+            e.preventDefault();
+            state.president = {
+                title: document.getElementById('edit-pres-title').value,
+                msg: document.getElementById('edit-pres-msg').value,
+                name: document.getElementById('edit-pres-name').value,
+                designation: document.getElementById('edit-pres-designation').value,
+                img: document.getElementById('edit-pres-img').value
+            };
+            saveState();
+            showToast('সভাপতি মহোদয়ের বার্তা আপডেট করা হয়েছে!');
+        }
+
+        // Admin Committee Management
+        function openAddMemberModal() {
+            document.getElementById('comm-member-id').value = '';
+            document.getElementById('comm-name').value = '';
+            document.getElementById('comm-role').value = '';
+            document.getElementById('comm-sub').value = '';
+            document.getElementById('comm-img').value = 'https://placehold.co/150x150/101C32/ffffff?text=Member';
+            document.getElementById('modal-comm-title').innerText = 'নতুন সদস্য যোগ করুন';
+            document.getElementById('modal-committee').classList.remove('hidden');
+        }
+
+        function closeCommitteeModal() {
+            document.getElementById('modal-committee').classList.add('hidden');
+        }
+
+        function editMember(id) {
+            const m = state.committee.find(c => c.id === id);
+            if(m) {
+                document.getElementById('comm-member-id').value = m.id;
+                document.getElementById('comm-name').value = m.name;
+                document.getElementById('comm-role').value = m.role;
+                document.getElementById('comm-sub').value = m.sub;
+                document.getElementById('comm-img').value = m.img;
+                document.getElementById('modal-comm-title').innerText = 'সদস্য তথ্য এডিট করুন';
+                document.getElementById('modal-committee').classList.remove('hidden');
+            }
+        }
+
+        function handleSaveCommitteeMember(e) {
+            e.preventDefault();
+            const id = document.getElementById('comm-member-id').value;
+            const name = document.getElementById('comm-name').value;
+            const role = document.getElementById('comm-role').value;
+            const sub = document.getElementById('comm-sub').value;
+            const img = document.getElementById('comm-img').value;
+
+            if(id) {
+                const m = state.committee.find(c => c.id === id);
+                if(m) {
+                    m.name = name; m.role = role; m.sub = sub; m.img = img;
+                }
+            } else {
+                state.committee.push({ id: 'c' + Date.now(), name, role, sub, img });
+            }
+
+            saveState();
+            closeCommitteeModal();
+            showToast('কমিটি তথ্য সংরক্ষিত হয়েছে!');
+        }
+
+        function deleteMember(id) {
+            state.committee = state.committee.filter(c => c.id !== id);
+            saveState();
+            showToast('সদস্য মুছে ফেলা হয়েছে');
+        }
+
+        // Render Admin Control Tables
+        function renderAdminTables() {
+            if (!state.isAdminLoggedIn) return;
+
+            const pendingCount = state.donors.filter(d => d.status === 'Pending').length;
+            document.getElementById('count-pending-donors').innerText = pendingCount;
+
+            const donorTbody = document.getElementById('admin-donors-table-body');
+            donorTbody.innerHTML = state.donors.map(d => `
+                <tr class="hover:bg-slate-50">
+                    <td class="p-3 font-semibold">${d.name}</td>
+                    <td class="p-3"><span class="bg-crimson-100 text-crimson-800 font-bold px-2 py-0.5 rounded text-xs">${d.blood}</span></td>
+                    <td class="p-3">${d.phone}</td>
+                    <td class="p-3">${d.location}</td>
+                    <td class="p-3 text-xs">${d.category}</td>
+                    <td class="p-3">
+                        ${d.status === 'Approved' ? '<span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-0.5 rounded font-bold">Approved</span>' : ''}
+                        ${d.status === 'Pending' ? '<span class="bg-amber-100 text-amber-800 text-xs px-2 py-0.5 rounded font-bold">Pending</span>' : ''}
+                        ${d.status === 'Rejected' ? '<span class="bg-rose-100 text-rose-800 text-xs px-2 py-0.5 rounded font-bold">Rejected</span>' : ''}
+                    </td>
+                    <td class="p-3 text-right space-x-1">
+                        ${d.status === 'Pending' ? `
+                            <button onclick="updateDonorStatus('${d.id}', 'Approved')" class="bg-emerald-600 text-white px-2 py-1 rounded text-xs hover:bg-emerald-700">Approve</button>
+                            <button onclick="updateDonorStatus('${d.id}', 'Rejected')" class="bg-rose-600 text-white px-2 py-1 rounded text-xs hover:bg-rose-700">Reject</button>
+                        ` : ''}
+                        <button onclick="toggleDonorActive('${d.id}')" class="bg-slate-200 text-slate-700 px-2 py-1 rounded text-xs hover:bg-slate-300">
+                            ${d.active ? 'Disable' : 'Enable'}
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+
+            const reqTbody = document.getElementById('admin-requests-table-body');
+            reqTbody.innerHTML = state.requests.map(r => `
+                <tr class="hover:bg-slate-50">
+                    <td class="p-3 font-semibold">${r.patient}</td>
+                    <td class="p-3"><span class="bg-crimson-100 text-crimson-800 font-bold px-2 py-0.5 rounded text-xs">${r.blood} (${r.units}B)</span></td>
+                    <td class="p-3">${r.hospital}</td>
+                    <td class="p-3">${r.phone}</td>
+                    <td class="p-3">${r.neededDate}</td>
+                    <td class="p-3">
+                        <span class="bg-sky-100 text-sky-800 text-xs px-2 py-0.5 rounded font-bold">${r.status}</span>
+                    </td>
+                    <td class="p-3 text-right space-x-1">
+                        <button onclick="updateRequestStatus('${r.id}', 'Fulfilled')" class="bg-emerald-600 text-white px-2 py-1 rounded text-xs hover:bg-emerald-700">Fulfilled</button>
+                        <button onclick="deleteRequest('${r.id}')" class="bg-rose-600 text-white px-2 py-1 rounded text-xs hover:bg-rose-700">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateDonorStatus(id, status) {
+            const donor = state.donors.find(d => d.id === id);
+            if (donor) { donor.status = status; saveState(); showToast('স্ট্যাটাস আপডেট করা হয়েছে'); }
+        }
+
+        function toggleDonorActive(id) {
+            const donor = state.donors.find(d => d.id === id);
+            if (donor) { donor.active = !donor.active; saveState(); showToast('সক্রিয়তা পরিবর্তন করা হয়েছে'); }
+        }
+
+        function updateRequestStatus(id, status) {
+            const req = state.requests.find(r => r.id === id);
+            if (req) { req.status = status; saveState(); showToast('আবেদন ফালফিল্ড চিহ্নিত করা হয়েছে'); }
+        }
+
+        function deleteRequest(id) {
+            state.requests = state.requests.filter(r => r.id !== id);
+            saveState();
+            showToast('আবেদন মুছে ফেলা হয়েছে');
+        }
+
+        // Export CSV Report
+        function exportCSVReport() {
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Type,Name/Patient,Blood Group,Phone/Contact,Location/Hospital,Status\n";
+
+            state.donors.forEach(d => {
+                csvContent += `Donor,"${d.name}",${d.blood},${d.phone},"${d.location}",${d.status}\n`;
+            });
+            state.requests.forEach(r => {
+                csvContent += `Request,"${r.patient}",${r.blood},${r.phone},"${r.hospital}",${r.status}\n`;
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `BAFSK_Blood_Club_Report.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Export Printable PDF Report
+        function exportPDFReport() {
+            document.getElementById('print-date').innerText = new Date().toLocaleDateString('bn-BD');
+            const printContent = document.getElementById('print-content');
+
+            printContent.innerHTML = `
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="font-bold border-b pb-1 mb-2">১. নিবন্ধিত ডোনারদের তালিকা (${state.donors.length} জন)</h3>
+                        <table class="w-full text-xs border border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100 border-b">
+                                    <th class="p-2 border">নাম</th>
+                                    <th class="p-2 border">গ্রুপ</th>
+                                    <th class="p-2 border">মোবাইল</th>
+                                    <th class="p-2 border">এলাকা</th>
+                                    <th class="p-2 border">স্ট্যাটাস</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${state.donors.map(d => `
+                                    <tr>
+                                        <td class="p-2 border">${d.name}</td>
+                                        <td class="p-2 border font-bold">${d.blood}</td>
+                                        <td class="p-2 border">${d.phone}</td>
+                                        <td class="p-2 border">${d.location}</td>
+                                        <td class="p-2 border">${d.status}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+
+            window.print();
+        }
+
+        function copySqlSchema() {
+            const sqlText = document.getElementById('sql-code-text').innerText;
+            navigator.clipboard.writeText(sqlText).then(() => {
+                showToast('SQL স্কিমা কপি করা হয়েছে!');
+            });
+        }
+
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', () => {
+            loadState();
+            renderAll();
+        });
+    </script>
+</body>
+</html>
